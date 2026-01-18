@@ -791,6 +791,6 @@ If you previously ran `/ctx:configure`:
 - Basic plugin scaffolding
 - Development environment setup
 
-[Unreleased]: https://github.com/promptune/promptune
-[0.1.0]: https://github.com/promptune/promptune
-[0.0.1]: https://github.com/promptune/promptune
+[Unreleased]: https://github.com/promptunecc/promptune
+[0.1.0]: https://github.com/promptunecc/promptune
+[0.0.1]: https://github.com/promptunecc/promptune

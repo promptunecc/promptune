@@ -13,5 +13,7 @@
 		"context-engineering"
 	],
 	"author": "Promptune",
+	"repository": "https://github.com/promptunecc/promptune",
+	"homepage": "https://promptune.cc",
 	"license": "MIT"
 }

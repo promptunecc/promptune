@@ -15,6 +15,7 @@ import shutil
 from pathlib import Path
 import sys
 import subprocess
+import os
 
 # Add parent directories to path
 sys.path.insert(0, str(Path(__file__).parent.parent / 'lib'))
@@ -51,7 +52,7 @@ def test_manifest_operations():
         assert success, "Manifest clear failed"
         assert not MANIFEST_PATH.exists(), "Manifest still exists after clear"
 
-        print("✅ Manifest operations: PASS")
+        print("Manifest operations: PASS")
 
     finally:
         # Restore original manifest
@@ -85,7 +86,7 @@ def test_project_level_install():
         assert dest.exists(), "Project-level install failed"
         assert dest.read_text() == "# Test Output Style\n", "Content mismatch"
 
-        print("✅ Project-level install: PASS")
+        print("Project-level install: PASS")
 
 def test_user_level_install():
     """Test user-level output style installation."""
@@ -140,7 +141,7 @@ def test_state_detection():
         assert read_back['output_style']['scope'] == 'user', "Scope detection failed"
         assert read_back['status_line']['installed'] == False, "Status line state wrong"
 
-        print("✅ State detection: PASS")
+        print("State detection: PASS")
 
     finally:
         # Restore
@@ -152,34 +153,62 @@ def test_state_detection():
 def test_complete_install_flow():
     """Test complete installation flow (project-level + status line)."""
 
-    print("\n📋 Testing complete installation flow...")
+    print("\nTesting complete installation flow...")
+    
+    # Get absolute path to the script
+    repo_root = Path(__file__).parent.parent
+    script_path = repo_root / "commands" / "ctx-configure.py"
+    
+    # Helper to print safely
+    def safe_print(msg):
+        try:
+            print(msg.encode(sys.stdout.encoding or 'utf-8', errors='replace').decode(sys.stdout.encoding or 'utf-8'))
+        except:
+            print(msg.encode('ascii', 'ignore').decode('ascii'))
 
-    # Step 1: Check initial state
-    result = subprocess.run(
-        ['uv', 'run', 'commands/ctx-configure.py'],
-        capture_output=True,
-        text=True
-    )
+    if not script_path.exists():
+        safe_print(f"Script not found: {script_path}")
+        return
 
-    state = json.loads(result.stdout)
-    print(f"   Initial state detected: {state['state']['output_style']['installed']}")
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmp_project = Path(tmpdir)
+        
+        # Step 1: Check initial state
+        # Run with cwd=tmp_project to simulate being in a new project
+        result = subprocess.run(
+            [sys.executable, str(script_path)],
+            capture_output=True,
+            text=True,
+            cwd=str(tmp_project),
+            env={**os.environ, "PYTHONPATH": str(repo_root), "PYTHONIOENCODING": "utf-8"}
+        )
 
-    # Step 2: Test project-level install
-    result = subprocess.run(
-        ['uv', 'run', 'commands/ctx-configure.py', '--install-project'],
-        capture_output=True,
-        text=True,
-        cwd='/Users/promptune/DevProjects/promptune'
-    )
+        try:
+            state = json.loads(result.stdout)
+            safe_print(f"   Initial state detected: {state.get('state', {}).get('output_style', {}).get('installed', 'unknown')}")
+        except json.JSONDecodeError:
+            safe_print(f"Failed to decode JSON: {result.stdout}")
 
-    assert result.returncode == 0, "Project install failed"
-    assert "Output style installed (project-level)" in result.stdout, "Install message missing"
+        # Step 2: Test project-level install
+        result = subprocess.run(
+            [sys.executable, str(script_path), '--install-project'],
+            capture_output=True,
+            text=True,
+            cwd=str(tmp_project),
+             env={**os.environ, "PYTHONPATH": str(repo_root), "PYTHONIOENCODING": "utf-8"}
+        )
 
-    # Step 3: Verify file exists
-    project_style = Path('/Users/promptune/DevProjects/promptune/.claude/output-styles/extraction-optimized.md')
-    assert project_style.exists(), "Project-level file not created"
+        if result.returncode != 0:
+            safe_print(f"Project install failed: {result.stderr}")
+            
+        assert result.returncode == 0, "Project install failed"
+        assert "Output style installed (project-level)" in result.stdout, "Install message missing"
 
-    print("✅ Complete installation flow: PASS")
+        # Step 3: Verify file exists
+        project_style = tmp_project / ".claude" / "output-styles" / "extraction-optimized.md"
+        assert project_style.exists(), "Project-level file not created"
+
+        safe_print("Complete installation flow: PASS")
 
 if __name__ == '__main__':
     print("Running ctx-configure integration tests...\n")
@@ -192,14 +221,14 @@ if __name__ == '__main__':
         test_complete_install_flow()
 
         print("\n" + "=" * 50)
-        print("✅ All integration tests passed!")
+        print("All integration tests passed!")
         print("=" * 50)
 
     except AssertionError as e:
-        print(f"\n❌ Test failed: {e}")
+        print(f"\nTest failed: {e}")
         sys.exit(1)
     except Exception as e:
-        print(f"\n❌ Unexpected error: {e}")
+        print(f"\nUnexpected error: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)

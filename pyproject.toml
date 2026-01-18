@@ -81,11 +81,11 @@ test = [
 ]
 
 [project.urls]
-Homepage = "https://slashsense.com"
-Documentation = "https://promptunecc.github.io/slashsense/"
-Repository = "https://github.com/promptune/promptune"
-Issues = "https://github.com/promptune/promptune"
-Changelog = "https://github.com/promptune/promptune"
+Homepage = "https://promptune.cc"
+Documentation = "https://promptunecc.github.io/promptune/"
+Repository = "https://github.com/promptunecc/promptune"
+Issues = "https://github.com/promptunecc/promptune"
+Changelog = "https://github.com/promptunecc/promptune"
 
 [build-system]
 requires = ["hatchling"]
@@ -265,7 +265,7 @@ directory = "htmlcov"
 # site_url: https://promptunecc.github.io/slashsense/
 # 
 # repo_name: promptunecc/slashsense
-# repo_url: https://github.com/promptune/promptune
+# repo_url: https://github.com/promptunecc/promptune
 # 
 # theme:
 #   name: material
@@ -357,9 +357,9 @@ directory = "htmlcov"
 # UV Configuration (uv-specific settings)
 # ============================================================================
 
-[tool.uv]
-# UV package installer settings
-dev-dependencies = [
+# Dependency Groups
+[dependency-groups]
+dev = [
     "pytest>=8.0.0",
     "pytest-cov>=4.1.0",
     "mkdocs>=1.6.0",

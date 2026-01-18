@@ -980,7 +980,7 @@
 				{
 					"tool_use_id": "toolu_013hhgJ255A9h5GT1kC93UW5",
 					"type": "tool_result",
-					"content": "     1\u2192{\n     2\u2192  \"name\": \"promptune\",\n     3\u2192  \"version\": \"0.8.9\",\n     4\u2192  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n     5\u2192  \"author\": {\n     6\u2192    \"name\": \"Promptune\",\n     7\u2192    \"email\": \"promptunecc@gmail.com\",\n     8\u2192    \"url\": \"https://promptune.cc\"\n     9\u2192  },\n    10\u2192  \"repository\": \"https://github.com/promptune/promptune\",\n    11\u2192  \"homepage\": \"https://github.com/promptune/promptune#readme\",\n    12\u2192  \"license\": \"MIT\",\n    13\u2192  \"keywords\": [\n    14\u2192    \"context-engineering\",\n    15\u2192    \"context-optimization\",\n    16\u2192    \"parallel-development\",\n    17\u2192    \"workflow-automation\",\n    18\u2192    \"git-worktrees\",\n    19\u2192    \"cost-optimization\",\n    20\u2192    \"performance-optimization\",\n    21\u2192    \"haiku-agents\",\n    22\u2192    \"modular-plans\",\n    23\u2192    \"zero-transformation\",\n    24\u2192    \"three-tier-architecture\",\n    25\u2192    \"autonomous-execution\",\n    26\u2192    \"natural-language\",\n    27\u2192    \"intent-detection\",\n    28\u2192    \"command-mapping\",\n    29\u2192    \"productivity\",\n    30\u2192    \"ai-assistant\",\n    31\u2192    \"claude-code\"\n    32\u2192  ]\n    33\u2192}\n\n<system-reminder>\nWhenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.\n</system-reminder>\n"
+					"content": "     1\u2192{\n     2\u2192  \"name\": \"promptune\",\n     3\u2192  \"version\": \"0.8.9\",\n     4\u2192  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n     5\u2192  \"author\": {\n     6\u2192    \"name\": \"Promptune\",\n     7\u2192    \"email\": \"promptunecc@gmail.com\",\n     8\u2192    \"url\": \"https://promptune.cc\"\n     9\u2192  },\n    10\u2192  \"repository\": \"https://github.com/promptunecc/promptune\",\n    11\u2192  \"homepage\": \"https://github.com/promptunecc/promptune#readme\",\n    12\u2192  \"license\": \"MIT\",\n    13\u2192  \"keywords\": [\n    14\u2192    \"context-engineering\",\n    15\u2192    \"context-optimization\",\n    16\u2192    \"parallel-development\",\n    17\u2192    \"workflow-automation\",\n    18\u2192    \"git-worktrees\",\n    19\u2192    \"cost-optimization\",\n    20\u2192    \"performance-optimization\",\n    21\u2192    \"haiku-agents\",\n    22\u2192    \"modular-plans\",\n    23\u2192    \"zero-transformation\",\n    24\u2192    \"three-tier-architecture\",\n    25\u2192    \"autonomous-execution\",\n    26\u2192    \"natural-language\",\n    27\u2192    \"intent-detection\",\n    28\u2192    \"command-mapping\",\n    29\u2192    \"productivity\",\n    30\u2192    \"ai-assistant\",\n    31\u2192    \"claude-code\"\n    32\u2192  ]\n    33\u2192}\n\n<system-reminder>\nWhenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.\n</system-reminder>\n"
 				}
 			]
 		},
@@ -990,7 +990,7 @@
 			"type": "text",
 			"file": {
 				"filePath": "/Users/promptune/DevProjects/promptune/.claude-plugin/plugin.json",
-				"content": "{\n  \"name\": \"promptune\",\n  \"version\": \"0.8.9\",\n  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n  \"author\": {\n    \"name\": \"Promptune\",\n    \"email\": \"promptunecc@gmail.com\",\n    \"url\": \"https://promptune.cc\"\n  },\n  \"repository\": \"https://github.com/promptune/promptune\",\n  \"homepage\": \"https://github.com/promptune/promptune#readme\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"context-engineering\",\n    \"context-optimization\",\n    \"parallel-development\",\n    \"workflow-automation\",\n    \"git-worktrees\",\n    \"cost-optimization\",\n    \"performance-optimization\",\n    \"haiku-agents\",\n    \"modular-plans\",\n    \"zero-transformation\",\n    \"three-tier-architecture\",\n    \"autonomous-execution\",\n    \"natural-language\",\n    \"intent-detection\",\n    \"command-mapping\",\n    \"productivity\",\n    \"ai-assistant\",\n    \"claude-code\"\n  ]\n}",
+				"content": "{\n  \"name\": \"promptune\",\n  \"version\": \"0.8.9\",\n  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n  \"author\": {\n    \"name\": \"Promptune\",\n    \"email\": \"promptunecc@gmail.com\",\n    \"url\": \"https://promptune.cc\"\n  },\n  \"repository\": \"https://github.com/promptunecc/promptune\",\n  \"homepage\": \"https://github.com/promptunecc/promptune#readme\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"context-engineering\",\n    \"context-optimization\",\n    \"parallel-development\",\n    \"workflow-automation\",\n    \"git-worktrees\",\n    \"cost-optimization\",\n    \"performance-optimization\",\n    \"haiku-agents\",\n    \"modular-plans\",\n    \"zero-transformation\",\n    \"three-tier-architecture\",\n    \"autonomous-execution\",\n    \"natural-language\",\n    \"intent-detection\",\n    \"command-mapping\",\n    \"productivity\",\n    \"ai-assistant\",\n    \"claude-code\"\n  ]\n}",
 				"numLines": 33,
 				"startLine": 1,
 				"totalLines": 33
@@ -2747,7 +2747,7 @@
 			"filePath": "/Users/promptune/DevProjects/promptune/.claude-plugin/plugin.json",
 			"oldString": "  \"version\": \"0.8.9\",",
 			"newString": "  \"version\": \"0.9.0\",",
-			"originalFile": "{\n  \"name\": \"promptune\",\n  \"version\": \"0.8.9\",\n  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n  \"author\": {\n    \"name\": \"Promptune\",\n    \"email\": \"promptunecc@gmail.com\",\n    \"url\": \"https://promptune.cc\"\n  },\n  \"repository\": \"https://github.com/promptune/promptune\",\n  \"homepage\": \"https://github.com/promptune/promptune#readme\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"context-engineering\",\n    \"context-optimization\",\n    \"parallel-development\",\n    \"workflow-automation\",\n    \"git-worktrees\",\n    \"cost-optimization\",\n    \"performance-optimization\",\n    \"haiku-agents\",\n    \"modular-plans\",\n    \"zero-transformation\",\n    \"three-tier-architecture\",\n    \"autonomous-execution\",\n    \"natural-language\",\n    \"intent-detection\",\n    \"command-mapping\",\n    \"productivity\",\n    \"ai-assistant\",\n    \"claude-code\"\n  ]\n}",
+			"originalFile": "{\n  \"name\": \"promptune\",\n  \"version\": \"0.8.9\",\n  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n  \"author\": {\n    \"name\": \"Promptune\",\n    \"email\": \"promptunecc@gmail.com\",\n    \"url\": \"https://promptune.cc\"\n  },\n  \"repository\": \"https://github.com/promptunecc/promptune\",\n  \"homepage\": \"https://github.com/promptunecc/promptune#readme\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"context-engineering\",\n    \"context-optimization\",\n    \"parallel-development\",\n    \"workflow-automation\",\n    \"git-worktrees\",\n    \"cost-optimization\",\n    \"performance-optimization\",\n    \"haiku-agents\",\n    \"modular-plans\",\n    \"zero-transformation\",\n    \"three-tier-architecture\",\n    \"autonomous-execution\",\n    \"natural-language\",\n    \"intent-detection\",\n    \"command-mapping\",\n    \"productivity\",\n    \"ai-assistant\",\n    \"claude-code\"\n  ]\n}",
 			"structuredPatch": [
 				{
 					"oldStart": 1,
@@ -3974,7 +3974,7 @@
 				{
 					"tool_use_id": "toolu_017Bj5QvKuDHoGgHkZ1H2UJq",
 					"type": "tool_result",
-					"content": "slashsense\thttps://github.com/promptune/promptune (fetch)\nslashsense\thttps://github.com/promptune/promptune (push)",
+					"content": "slashsense\thttps://github.com/promptunecc/promptune (fetch)\nslashsense\thttps://github.com/promptunecc/promptune (push)",
 					"is_error": false
 				}
 			]
@@ -3982,7 +3982,7 @@
 		"uuid": "91bd98b4-858d-45d3-8e9f-4e2ac309eb81",
 		"timestamp": "2025-11-22T21:02:39.683Z",
 		"toolUseResult": {
-			"stdout": "slashsense\thttps://github.com/promptune/promptune (fetch)\nslashsense\thttps://github.com/promptune/promptune (push)",
+			"stdout": "slashsense\thttps://github.com/promptunecc/promptune (fetch)\nslashsense\thttps://github.com/promptunecc/promptune (push)",
 			"stderr": "",
 			"interrupted": false,
 			"isImage": false
@@ -4003,7 +4003,7 @@
 				{
 					"tool_use_id": "toolu_01DB7iu1w2nxK65AQDQS3vxP",
 					"type": "tool_result",
-					"content": "To https://github.com/promptune/promptune\n   86e3c3e..065f0a2  master -> master",
+					"content": "To https://github.com/promptunecc/promptune\n   86e3c3e..065f0a2  master -> master",
 					"is_error": false
 				}
 			]
@@ -4011,7 +4011,7 @@
 		"uuid": "c85b88b0-41e0-4d4c-8dd0-5a70ec577bbd",
 		"timestamp": "2025-11-22T21:02:42.761Z",
 		"toolUseResult": {
-			"stdout": "To https://github.com/promptune/promptune\n   86e3c3e..065f0a2  master -> master",
+			"stdout": "To https://github.com/promptunecc/promptune\n   86e3c3e..065f0a2  master -> master",
 			"stderr": "",
 			"interrupted": false,
 			"isImage": false
@@ -4290,7 +4290,7 @@
 			"content": [
 				{
 					"type": "text",
-					"text": "## \u2705 **Changes Committed and Pushed**\n\n**Commit:** `065f0a2` - *fix: change from auto-execute to suggest-only mode (v0.9.0)*\n\n**Pushed to:** `https://github.com/promptune/promptune` (master branch)\n\n---\n\n### **Summary of Changes**\n\n**Files Modified:**\n1. `hooks/user_prompt_submit.py` - Changed response format (lines 887-898)\n2. `.claude-plugin/plugin.json` - Version bump: `0.8.9` \u2192 `0.9.0`\n\n**Behavior Change:**\n\n| Before (v0.8.9) | After (v0.9.0) |\n|-----------------|----------------|\n| \u274c Auto-executes detected commands | \u2705 Suggests commands, user decides |\n| Uses `modifiedPrompt` (injects command) | Uses `additionalContext` (shows suggestion) |\n| Shows \"auto-executing\" message | Shows helpful suggestion with benefits |\n\n---\n\n### **What You'll See Now**\n\nWhen you type something like *\"help me research state libraries\"*:\n\n```\n\ud83c\udfaf Detected: `ctx:researcher` (100% via fuzzy)\n\u26a1 Detection speed: 0.33ms\n\n\ud83d\udcac Suggestion: \u2705 /ctx:research is perfect for this - it will spawn 3 \nparallel agents to investigate state management libraries, compare options, \nand provide recommendations in ~2 minutes.\n```\n\n**You decide** whether to use the command or continue with your original prompt.\n\n---\n\nThe fix is **live immediately** since hooks run from your local development directory. The unexpected auto-execution behavior is now resolved! \ud83c\udf89"
+					"text": "## \u2705 **Changes Committed and Pushed**\n\n**Commit:** `065f0a2` - *fix: change from auto-execute to suggest-only mode (v0.9.0)*\n\n**Pushed to:** `https://github.com/promptunecc/promptune` (master branch)\n\n---\n\n### **Summary of Changes**\n\n**Files Modified:**\n1. `hooks/user_prompt_submit.py` - Changed response format (lines 887-898)\n2. `.claude-plugin/plugin.json` - Version bump: `0.8.9` \u2192 `0.9.0`\n\n**Behavior Change:**\n\n| Before (v0.8.9) | After (v0.9.0) |\n|-----------------|----------------|\n| \u274c Auto-executes detected commands | \u2705 Suggests commands, user decides |\n| Uses `modifiedPrompt` (injects command) | Uses `additionalContext` (shows suggestion) |\n| Shows \"auto-executing\" message | Shows helpful suggestion with benefits |\n\n---\n\n### **What You'll See Now**\n\nWhen you type something like *\"help me research state libraries\"*:\n\n```\n\ud83c\udfaf Detected: `ctx:researcher` (100% via fuzzy)\n\u26a1 Detection speed: 0.33ms\n\n\ud83d\udcac Suggestion: \u2705 /ctx:research is perfect for this - it will spawn 3 \nparallel agents to investigate state management libraries, compare options, \nand provide recommendations in ~2 minutes.\n```\n\n**You decide** whether to use the command or continue with your original prompt.\n\n---\n\nThe fix is **live immediately** since hooks run from your local development directory. The unexpected auto-execution behavior is now resolved! \ud83c\udf89"
 				}
 			],
 			"stop_reason": null,

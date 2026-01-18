@@ -2,7 +2,7 @@
 
 > **Precision-Tuned Context Engineering for Claude Code**
 
-[![Version 0.8.9](https://img.shields.io/badge/version-0.8.9-blue.svg)](https://github.com/promptune/promptune)
+[![Version 0.8.9](https://img.shields.io/badge/version-0.8.9-blue.svg)](https://github.com/promptunecc/promptune)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Cost Savings: 87%](https://img.shields.io/badge/cost%20savings-87%25-brightgreen.svg)](#cost-optimization)
 
@@ -371,15 +371,15 @@ Time saved: 17 min/session × 5 sessions/week = 85 min/week
 
 ## License
 
-MIT License - See [LICENSE](https://github.com/promptune/promptune) for details.
+MIT License - See [LICENSE](https://github.com/promptunecc/promptune) for details.
 
 ---
 
 ## Links
 
-- **GitHub**: [promptunecc/promptune](https://github.com/promptune/promptune)
-- **Issues**: [Report bugs](https://github.com/promptune/promptune)
-- **Discussions**: [Join the community](https://github.com/promptune/promptune)
+- **GitHub**: [promptunecc/promptune](https://github.com/promptunecc/promptune)
+- **Issues**: [Report bugs](https://github.com/promptunecc/promptune)
+- **Discussions**: [Join the community](https://github.com/promptunecc/promptune)
 
 ---
 

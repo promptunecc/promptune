@@ -5,7 +5,7 @@ site_url: https://promptunecc.github.io/promptune/
 
 # Repository
 repo_name: promptunecc/promptune
-repo_url: https://github.com/promptune/promptune
+repo_url: https://github.com/promptunecc/promptune
 edit_uri: edit/master/docs/
 
 # Copyright
@@ -176,7 +176,7 @@ extra:
   # Social links
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/promptune/promptune
+      link: https://github.com/promptunecc/promptune
       name: SlashSense on GitHub
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/slashsense/

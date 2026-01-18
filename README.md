@@ -9,7 +9,7 @@ Optimize context flow with modular plans (95% fewer tokens), parallel workflows 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-purple.svg)](https://docs.claude.com/en/docs/claude-code/plugins)
-[![Version](https://img.shields.io/badge/version-0.9.0-green.svg)](https://github.com/promptune/promptune)
+[![Version](https://img.shields.io/badge/version-0.9.0-green.svg)](https://github.com/promptunecc/promptune)
 [![Cost Savings](https://img.shields.io/badge/cost%20savings-81%25-brightgreen.svg)](#-cost-optimization)
 [![Context Optimization](https://img.shields.io/badge/token%20savings-95%25-brightgreen.svg)](#-context-engineering)
 [![Documentation](https://img.shields.io/badge/docs-promptune.com-blue.svg)](https://promptune.cc/)
@@ -356,7 +356,7 @@ Understands natural variations and **automatically executes** the detected comma
 
 ```bash
 # Clone repository
-git clone https://github.com/promptune/promptune
+git clone https://github.com/promptunecc/promptune
 cd promptune
 
 # Install locally

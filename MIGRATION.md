@@ -141,7 +141,7 @@ git pull origin main
 
 # Or clone fresh
 cd ~/Projects
-git clone https://github.com/promptune/promptune
+git clone https://github.com/promptunecc/promptune
 cd promptune
 
 # Install locally
@@ -258,7 +258,7 @@ GitHub automatically redirects old URLs to the new repo.
 /plugin update
 
 # If still not found, install from GitHub
-/plugin install https://github.com/promptune/promptune
+/plugin install https://github.com/promptunecc/promptune
 ```
 
 ### Issue: "Old slashsense still installed"
@@ -310,7 +310,7 @@ GitHub automatically redirects old URLs to the new repo.
 - [Promptune README](./README.md) - Full documentation
 - [CHANGELOG](./CHANGELOG.md) - Detailed version history
 - [CLAUDE.md](./CLAUDE.md) - Developer guide
-- [GitHub Discussions](https://github.com/promptune/promptune) - Community support
+- [GitHub Discussions](https://github.com/promptunecc/promptune) - Community support
 
 ---
 
@@ -337,4 +337,4 @@ With the rebrand complete, we're doubling down on context engineering:
 
 **Welcome to Promptune!** 🎵
 
-Questions? Open an issue on [GitHub](https://github.com/promptune/promptune) or check [Discussions](https://github.com/promptune/promptune).
+Questions? Open an issue on [GitHub](https://github.com/promptunecc/promptune) or check [Discussions](https://github.com/promptunecc/promptune).

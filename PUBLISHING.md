@@ -49,7 +49,7 @@ git push origin v0.1.0
 
 ### Step 3: Verify on GitHub
 
-Go to: https://github.com/promptune/promptune
+Go to: https://github.com/promptunecc/promptune
 
 Ensure these files are present:
 
@@ -89,7 +89,7 @@ The community maintains an aggregator at **claudecodemarketplace.com** (115+ mar
 
    ```bash
    # Clone your fork
-   git clone https://github.com/promptune/promptune
+   git clone https://github.com/promptunecc/promptune
    cd claude-code-marketplace
 
    # Add your marketplace (follow their format)
@@ -219,7 +219,7 @@ gh release create v1.1.0 \
   --notes "See CHANGELOG.md for details"
 
 # Or via GitHub web UI:
-# https://github.com/promptune/promptune
+# https://github.com/promptunecc/promptune
 ```
 
 ---
@@ -271,7 +271,7 @@ Track plugin adoption via GitHub:
 - **Clone Count**: Installation attempts
 - **Traffic**: Views and clones over time
 
-Access at: https://github.com/promptune/promptune
+Access at: https://github.com/promptunecc/promptune
 
 ### Community Feedback
 
@@ -369,7 +369,7 @@ Before each release:
 
 ## 🔗 Useful Links
 
-- **Promptune Repository**: https://github.com/promptune/promptune
+- **Promptune Repository**: https://github.com/promptunecc/promptune
 - **Community Marketplace**: https://claudecodemarketplace.com/
 - **Submit Marketplace**: https://github.com/joesaunderson/claude-code-marketplace
 - **Claude Code Docs**: https://docs.claude.com/en/docs/claude-code/plugin-marketplaces

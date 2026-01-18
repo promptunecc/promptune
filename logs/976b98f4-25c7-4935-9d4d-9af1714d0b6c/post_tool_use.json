@@ -75,7 +75,7 @@
 			"description": "Commit all command prescriptiveness fixes"
 		},
 		"tool_response": {
-			"stdout": "[master 86e3c3e] fix: make all slash commands prescriptive and executable\n 5 files changed, 622 insertions(+), 76 deletions(-)\n\u2705 Committed and pushed to slashsense/master\nTo https://github.com/promptune/promptune\n   a5c8df4..86e3c3e  master -> master",
+			"stdout": "[master 86e3c3e] fix: make all slash commands prescriptive and executable\n 5 files changed, 622 insertions(+), 76 deletions(-)\n\u2705 Committed and pushed to slashsense/master\nTo https://github.com/promptunecc/promptune\n   a5c8df4..86e3c3e  master -> master",
 			"stderr": "",
 			"interrupted": false,
 			"isImage": false

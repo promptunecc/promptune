@@ -103,7 +103,7 @@
 			"type": "text",
 			"file": {
 				"filePath": "/Users/promptune/DevProjects/promptune/.claude-plugin/plugin.json",
-				"content": "{\n  \"name\": \"promptune\",\n  \"version\": \"0.8.9\",\n  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n  \"author\": {\n    \"name\": \"Promptune\",\n    \"email\": \"promptunecc@gmail.com\",\n    \"url\": \"https://promptune.cc\"\n  },\n  \"repository\": \"https://github.com/promptune/promptune\",\n  \"homepage\": \"https://github.com/promptune/promptune#readme\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"context-engineering\",\n    \"context-optimization\",\n    \"parallel-development\",\n    \"workflow-automation\",\n    \"git-worktrees\",\n    \"cost-optimization\",\n    \"performance-optimization\",\n    \"haiku-agents\",\n    \"modular-plans\",\n    \"zero-transformation\",\n    \"three-tier-architecture\",\n    \"autonomous-execution\",\n    \"natural-language\",\n    \"intent-detection\",\n    \"command-mapping\",\n    \"productivity\",\n    \"ai-assistant\",\n    \"claude-code\"\n  ]\n}",
+				"content": "{\n  \"name\": \"promptune\",\n  \"version\": \"0.8.9\",\n  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n  \"author\": {\n    \"name\": \"Promptune\",\n    \"email\": \"promptunecc@gmail.com\",\n    \"url\": \"https://promptune.cc\"\n  },\n  \"repository\": \"https://github.com/promptunecc/promptune\",\n  \"homepage\": \"https://github.com/promptunecc/promptune#readme\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"context-engineering\",\n    \"context-optimization\",\n    \"parallel-development\",\n    \"workflow-automation\",\n    \"git-worktrees\",\n    \"cost-optimization\",\n    \"performance-optimization\",\n    \"haiku-agents\",\n    \"modular-plans\",\n    \"zero-transformation\",\n    \"three-tier-architecture\",\n    \"autonomous-execution\",\n    \"natural-language\",\n    \"intent-detection\",\n    \"command-mapping\",\n    \"productivity\",\n    \"ai-assistant\",\n    \"claude-code\"\n  ]\n}",
 				"numLines": 33,
 				"startLine": 1,
 				"totalLines": 33
@@ -427,7 +427,7 @@
 			"filePath": "/Users/promptune/DevProjects/promptune/.claude-plugin/plugin.json",
 			"oldString": "  \"version\": \"0.8.9\",",
 			"newString": "  \"version\": \"0.9.0\",",
-			"originalFile": "{\n  \"name\": \"promptune\",\n  \"version\": \"0.8.9\",\n  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n  \"author\": {\n    \"name\": \"Promptune\",\n    \"email\": \"promptunecc@gmail.com\",\n    \"url\": \"https://promptune.cc\"\n  },\n  \"repository\": \"https://github.com/promptune/promptune\",\n  \"homepage\": \"https://github.com/promptune/promptune#readme\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"context-engineering\",\n    \"context-optimization\",\n    \"parallel-development\",\n    \"workflow-automation\",\n    \"git-worktrees\",\n    \"cost-optimization\",\n    \"performance-optimization\",\n    \"haiku-agents\",\n    \"modular-plans\",\n    \"zero-transformation\",\n    \"three-tier-architecture\",\n    \"autonomous-execution\",\n    \"natural-language\",\n    \"intent-detection\",\n    \"command-mapping\",\n    \"productivity\",\n    \"ai-assistant\",\n    \"claude-code\"\n  ]\n}",
+			"originalFile": "{\n  \"name\": \"promptune\",\n  \"version\": \"0.8.9\",\n  \"description\": \"Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.\",\n  \"author\": {\n    \"name\": \"Promptune\",\n    \"email\": \"promptunecc@gmail.com\",\n    \"url\": \"https://promptune.cc\"\n  },\n  \"repository\": \"https://github.com/promptunecc/promptune\",\n  \"homepage\": \"https://github.com/promptunecc/promptune#readme\",\n  \"license\": \"MIT\",\n  \"keywords\": [\n    \"context-engineering\",\n    \"context-optimization\",\n    \"parallel-development\",\n    \"workflow-automation\",\n    \"git-worktrees\",\n    \"cost-optimization\",\n    \"performance-optimization\",\n    \"haiku-agents\",\n    \"modular-plans\",\n    \"zero-transformation\",\n    \"three-tier-architecture\",\n    \"autonomous-execution\",\n    \"natural-language\",\n    \"intent-detection\",\n    \"command-mapping\",\n    \"productivity\",\n    \"ai-assistant\",\n    \"claude-code\"\n  ]\n}",
 			"structuredPatch": [
 				{
 					"oldStart": 1,
@@ -741,7 +741,7 @@
 			"description": "Check git remotes"
 		},
 		"tool_response": {
-			"stdout": "slashsense\thttps://github.com/promptune/promptune (fetch)\nslashsense\thttps://github.com/promptune/promptune (push)",
+			"stdout": "slashsense\thttps://github.com/promptunecc/promptune (fetch)\nslashsense\thttps://github.com/promptunecc/promptune (push)",
 			"stderr": "",
 			"interrupted": false,
 			"isImage": false
@@ -760,7 +760,7 @@
 			"description": "Push changes to remote"
 		},
 		"tool_response": {
-			"stdout": "To https://github.com/promptune/promptune\n   86e3c3e..065f0a2  master -> master",
+			"stdout": "To https://github.com/promptunecc/promptune\n   86e3c3e..065f0a2  master -> master",
 			"stderr": "",
 			"interrupted": false,
 			"isImage": false

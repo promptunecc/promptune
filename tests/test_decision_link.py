@@ -22,9 +22,9 @@ from decision_link import DecisionLinker
 
 
 @pytest.fixture
-def temp_db() -> Path:
+def temp_db(tmp_path: Path) -> Path:
     """Create a temporary database with test data."""
-    db_file = Path(tempfile.gettempdir()) / "test_observability.db"
+    db_file = tmp_path / "test_observability.db"
 
     # Create database with schema
     with sqlite3.connect(db_file) as conn:
@@ -78,17 +78,13 @@ def temp_db() -> Path:
 
         conn.commit()
 
-    yield db_file
-
-    # Cleanup
-    if db_file.exists():
-        db_file.unlink()
+    return db_file
 
 
 @pytest.fixture
-def temp_decisions() -> Path:
+def temp_decisions(tmp_path: Path) -> Path:
     """Create a temporary decisions.yaml file with test data."""
-    decisions_file = Path(tempfile.gettempdir()) / "test_decisions.yaml"
+    decisions_file = tmp_path / "test_decisions.yaml"
 
     # Current time for reproducible tests
     now = datetime.now(timezone.utc)
@@ -123,11 +119,7 @@ def temp_decisions() -> Path:
     with open(decisions_file, "w") as f:
         yaml.dump(data, f)
 
-    yield decisions_file
-
-    # Cleanup
-    if decisions_file.exists():
-        decisions_file.unlink()
+    return decisions_file
 
 
 class TestDecisionLinker:
