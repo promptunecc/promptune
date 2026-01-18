@@ -1,0 +1,234 @@
+metadata:
+  project: promptune
+  version: "1.0"
+  created: "2025-10-28T04:17:30.132764"
+  last_scan: "2025-10-28T04:17:30.132928"
+  auto_population_enabled: true
+research:
+  entries: []
+plans:
+  entries:
+    - id: plan-001
+      title: decisions.yaml (ACTIVE only - last 90 days)
+      summary:
+        "**Brilliant foresight!** You're absolutely right. Let me design the
+        complete lifecycle system.
+
+
+        ## The Problem at Scale
+
+
+        **Year 1:** 50 entries (~10K tokens) ✅ Manageable
+
+        **Year 3:** 300 entries (~60K tokens) ⚠️ Bloating
+
+        **Year 5:** 600 entries (~120K tokens) ❌ Unusable
+
+
+        **Also:**
+
+        - Old research **expires** (libraries change, best practices evolve)
+
+        - Completed plans become **irrelevant**
+
+        - Superseded decisions clutter **search results**
+
+
+        ---
+
+
+        ## Solution: Tiered Architecture + Lifecycle Manageme..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T00:25:12.256Z"
+      created_at: "2025-10-28T04:17:30.132845"
+      status: active
+    - id: plan-002
+      title: Plan 2
+      summary:
+        "## Answer: YES - Output Style Directly Affects Extraction\n\n### Key\
+        \ Finding\n\n**Transcripts store Claude's responses exactly as formatted** -\
+        \ whatever structure Claude uses is what gets stored in the JSON `content` field.\n\
+        \n**Output styles modify system prompt** → Claude formats differently → Different\
+        \ content in transcripts → Easier or harder extraction\n\n---\n\n## How It Works\n\
+        \n### Conversation Transcript Format\n```json\n{\n  \"type\": \"assistant\"\
+        ,\n  \"message\": {\n    \"content\": [\n      {\"type\": \"text\", ..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T01:38:05.703Z"
+      created_at: "2025-10-28T04:17:30.132862"
+      status: active
+    - id: plan-003
+      title: Copy to project output-styles
+      summary:
+        "Perfect! ✅ I've created the extraction-optimized output style. Here's
+        what you got:
+
+
+        ---
+
+
+        ## Files Created
+
+
+        ### 1. **extraction-optimized.md** - The Output Style
+
+        `/Users/promptune/DevProjects/promptune/output-styles/extraction-optimized.md`
+
+
+        **What it does:**
+
+        - Forces Claude to output in consistent, structured format
+
+        - Guarantees YAML blocks for all data
+
+        - Uses predictable headers (## Architecture, ## Task Breakdown, etc.)
+
+        - Includes metadata (Type, Status, Estimated Tokens)
+
+        - Enables 99% extracti..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T01:42:33.388Z"
+      created_at: "2025-10-28T04:17:30.132874"
+      status: active
+    - id: plan-004
+      title: System Architecture
+      summary:
+        "Excellent! \U0001F389 The **Extraction-Optimized Developer** output\
+        \ style is now active.\n\n## What Just Happened\n\n```\n✅ Output style activated\n\
+        ✅ My system prompt modified\n✅ All future design/plan/decision outputs will\
+        \ use structured format\n✅ SessionEnd hook can now extract with 99% reliability\n\
+        ```\n\n---\n\n## What's Different Now\n\n### Before (Without Style)\n```\nMe:\
+        \ \"Here's the architecture. We'll use Component A for X \nand Component B for\
+        \ Y...\"\n\nTranscript stores: Narrative text (hard to extract)\n```\n\n###\
+        \ No..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T01:56:40.736Z"
+      created_at: "2025-10-28T04:17:30.132881"
+      status: active
+    - id: plan-005
+      title: SessionEnd Extractor Hook Implementation
+      summary:
+        "# SessionEnd Extractor Hook Implementation\n\n**Type:** Implementation\n\
+        **Status:** Complete\n**Estimated Tokens:** 35000\n\n---\n\n## Overview\n\n\
+        Implementing the SessionEnd hook that automatically extracts structured content\
+        \ from conversation transcripts and writes to permanent storage (.plans/, decisions.yaml)\
+        \ with zero manual work.\n\n---\n\n## Architecture\n\n```yaml\narchitecture:\n\
+        \  components:\n    - name: \"SessionEnd Extractor\"\n      purpose: \"Extract\
+        \ completed work from transcripts after session ends\"\n  ..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T02:00:05.688Z"
+      created_at: "2025-10-28T04:17:30.132884"
+      status: active
+    - id: plan-006
+      title: Extraction-Optimized Output Style Integration
+      summary:
+        "# Extraction-Optimized Output Style Integration\n\n**Type:** Design\n\
+        **Status:** Complete\n**Estimated Tokens:** 45000\n\n---\n\n## Overview\n\n\
+        Integrating extraction-optimized output style setup with existing `/ctx:configure`\
+        \ command while adding uninstall capability and interactive user prompts via\
+        \ AskUserQuestion tool. Creates unified configuration experience with clear\
+        \ choices for users.\n\n---\n\n## Architecture\n\n```yaml\narchitecture:\n \
+        \ components:\n    - name: \"Enhanced ctx-configure\"\n      purpose: \"Uni..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T02:18:28.872Z"
+      created_at: "2025-10-28T04:17:30.132889"
+      status: active
+    - id: plan-007
+      title: Enhanced ctx-configure with Project-Level + Status Line Integration
+      summary:
+        "# Enhanced ctx-configure with Project-Level + Status Line Integration\n\
+        \n**Type:** Design\n**Status:** Complete\n**Estimated Tokens:** 38000\n\n---\n\
+        \n## Overview\n\nEnhanced `/ctx:configure` that offers project-level installation,\
+        \ integrates status line setup, and provides clear disable instructions before\
+        \ plugin uninstallation. Single command sets up everything users need.\n\n---\n\
+        \n## Architecture\n\n```yaml\narchitecture:\n  components:\n    - name: \"Enhanced\
+        \ Configuration Flow\"\n      purpose: \"Unified setup f..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T02:30:06.188Z"
+      created_at: "2025-10-28T04:17:30.132894"
+      status: active
+    - id: plan-008
+      title: Copilot-First Tool Routing Architecture
+      summary:
+        "# Copilot-First Tool Routing Architecture\n\n**Type:** Design\n**Status:**\
+        \ Complete\n**Estimated Tokens:** 32000\n\n---\n\n## Overview\n\nDesign a multi-layered\
+        \ system that makes copilot-delegate skill the default choice for GitHub/git\
+        \ operations, with direct commands as fallback. Works for main Claude session\
+        \ AND all subagents (Haiku executors, parallel worktrees, etc.).\n\n---\n\n\
+        ## Architecture\n\n```yaml\narchitecture:\n  components:\n    - name: \"Skill\
+        \ Description Enhancement\"\n      purpose: \"Make copilot-del..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T03:14:48.319Z"
+      created_at: "2025-10-28T04:17:30.132897"
+      status: active
+    - id: plan-009
+      title: Intelligent Script Execution with AI Error Handling
+      summary:
+        "# Intelligent Script Execution with AI Error Handling\n\n**Type:** Design\n\
+        **Status:** Complete\n**Estimated Tokens:** 28000\n\n---\n\n## Overview\n\n\
+        Hybrid architecture combining deterministic script execution ($0.002) with AI-powered\
+        \ error recovery (Haiku headless or Copilot). Scripts handle 99% of cases fast\
+        \ and cheap, AI handles edge cases and errors without consuming main Claude\
+        \ session.\n\n---\n\n## Architecture\n\n```yaml\narchitecture:\n  components:\n\
+        \    - name: \"Smart Script Wrapper\"\n      purpose: \"Exec..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T03:46:53.825Z"
+      created_at: "2025-10-28T04:17:30.132900"
+      status: active
+    - id: plan-010
+      title: Hook-Based Script Discovery + Remote Detection Analysis
+      summary:
+        "# Hook-Based Script Discovery + Remote Detection Analysis\n\n**Type:**\
+        \ Design\n**Status:** Complete\n**Estimated Tokens:** 22000\n\n---\n\n## Overview\n\
+        \nMulti-layered script discovery using PreToolUse hooks to suggest scripts BEFORE\
+        \ Claude uses inefficient multi-tool approaches, plus analysis of which scripts\
+        \ need auto-remote detection.\n\n---\n\n## Part 1: Hook-Based Script Discovery\n\
+        \n### Architecture\n\n```yaml\narchitecture:\n  layer_1_slash_commands:\n  \
+        \  discovery: \"Autocomplete (/ctx:commit)\"\n    user_aware..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T04:37:39.620Z"
+      created_at: "2025-10-28T04:17:30.132903"
+      status: active
+    - id: plan-011
+      title: Unified Decision Tracking System
+      summary:
+        "**YES! I see it now!** \U0001F3AF\n\n## The Problem with /ctx:plan\n\
+        \n```yaml\nwhat_ctx_plan_told_me_to_do:\n  step_4: \"Use Write tool to create\
+        \ plan.yaml\"\n  step_4_2: \"Use Write tool to create task-0.md, task-1.md,\
+        \ etc.\"\n  step_5: \"Generate PLAN_FULL.md\"\n\n  i_just_did:\n    - \"Write(.plans/decision-tracking-system/parallel-plan/plan.yaml)\"\
+        \n    - \"Write(.plans/decision-tracking-system/parallel-plan/tasks/task-0.md)\"\
+        \n    - \"Write(.plans/decision-tracking-system/parallel-plan/tasks/task-1.md)\"\
+        \n    - \"etc...\"\n\n  t..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T05:48:53.473Z"
+      created_at: "2025-10-28T04:17:30.132924"
+      status: active
+    - id: plan-012
+      title: Unified DRY Strategy & Architectural Review
+      summary:
+        "# Unified DRY Strategy & Architectural Review\n\n**Type:** Design\n\
+        **Status:** Complete\n**Estimated Tokens:** 35000\n\n---\n\n## Overview\n\n\
+        Comprehensive DRY strategy addressing violations across all Promptune components\
+        \ (skills, agents, commands, hooks). Establishes when to use extraction vs modular\
+        \ files, standardizes git script usage, and eliminates time-based organization.\n\
+        \n---\n\n## Architecture\n\n```yaml\narchitecture:\n  dry_principles:\n    extraction_based:\n\
+        \      use_for: \"Documentation, designs, de..."
+      conversation_link:
+        session_id: 72e21041-8ffd-4a06-b97c-2b70c4ad8983
+        timestamp: "2025-10-28T05:59:22.446Z"
+      created_at: "2025-10-28T04:17:30.132927"
+      status: active
+decisions:
+  entries: []
+features:
+  entries: []

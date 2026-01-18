@@ -1,0 +1,33 @@
+{
+	"name": "promptune",
+	"version": "0.9.2",
+	"description": "Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans (95% fewer tokens), parallel workflows (81% cost reduction), and zero-transformation architecture.",
+	"author": {
+		"name": "Promptune",
+		"email": "promptunecc@gmail.com",
+		"url": "https://promptune.cc"
+	},
+	"repository": "https://github.com/promptune/promptune",
+	"homepage": "https://github.com/promptune/promptune#readme",
+	"license": "MIT",
+	"keywords": [
+		"context-engineering",
+		"context-optimization",
+		"parallel-development",
+		"workflow-automation",
+		"git-worktrees",
+		"cost-optimization",
+		"performance-optimization",
+		"haiku-agents",
+		"modular-plans",
+		"zero-transformation",
+		"three-tier-architecture",
+		"autonomous-execution",
+		"natural-language",
+		"intent-detection",
+		"command-mapping",
+		"productivity",
+		"ai-assistant",
+		"claude-code"
+	]
+}

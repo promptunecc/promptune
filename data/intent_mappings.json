@@ -1,0 +1,332 @@
+{
+  "metadata": {
+    "version": "0.8.3",
+    "generated": "auto",
+    "description": "Auto-generated from markdown frontmatter",
+    "total_commands": 10,
+    "total_skills": 6,
+    "total_agents": 5
+  },
+  "commands": {
+    "/ctx:status": {
+      "description": "Check status of parallel worktrees and tasks",
+      "keywords": [
+        "check status",
+        "parallel status",
+        "show progress",
+        "task status",
+        "worktree status",
+        "show parallel progress",
+        "check parallel"
+      ],
+      "category": "General",
+      "file": "commands/ctx-status.md"
+    },
+    "/ctx:help": {
+      "description": "Example-first command reference and quick start guide",
+      "keywords": [
+        "examples",
+        "quick start",
+        "how to use",
+        "show examples",
+        "command reference",
+        "getting started"
+      ],
+      "patterns": [
+        ["^\\s*(?:show|what|where|list)\\s+(?:is\\s+)?(?:the\\s+)?help\\b", 0.95],
+        ["\\bhelp\\s+(?:command|reference|guide|menu|documentation|docs)\\b", 0.95],
+        ["(?:^|need|want)\\s+help\\b(?!\\s+(?:me|us|you|with))", 0.85]
+      ],
+      "category": "General",
+      "file": "commands/ctx-help.md"
+    },
+    "/ctx:verify": {
+      "description": "Verify and execute detected slash command with user confirmation",
+      "keywords": [
+        "verify command",
+        "confirm command",
+        "verification"
+      ],
+      "category": "General",
+      "file": "commands/ctx-verify.md"
+    },
+    "/ctx:research": {
+      "description": "Fast research using 3 parallel Haiku agents for technical questions and decision-making (1-2 min)",
+      "keywords": [
+        "quick research",
+        "fast research",
+        "parallel research",
+        "technical research",
+        "investigate question",
+        "research question"
+      ],
+      "category": "General",
+      "file": "commands/ctx-research.md"
+    },
+    "/ctx:design": {
+      "description": "Design system architecture, APIs, and component interfaces with structured workflow",
+      "keywords": [
+        "design",
+        "architect",
+        "architecture",
+        "system design",
+        "api design",
+        "design pattern",
+        "structure"
+      ],
+      "category": "General",
+      "file": "commands/ctx-design.md"
+    },
+    "/ctx:configure": {
+      "description": "Learn how to optionally customize your environment for extra Promptune visibility (manual setup guide)",
+      "keywords": [
+        "configure",
+        "setup",
+        "customize",
+        "configuration",
+        "setup promptune",
+        "configure environment",
+        "customization guide"
+      ],
+      "category": "General",
+      "file": "commands/ctx-configure.md"
+    },
+    "/ctx:execute": {
+      "description": "Execute plan in parallel using git worktrees and multiple Claude sessions",
+      "keywords": [
+        "execute plan",
+        "run plan",
+        "run tasks",
+        "parallelize work",
+        "work in parallel",
+        "execute tasks",
+        "run parallel"
+      ],
+      "category": "General",
+      "file": "commands/ctx-execute.md"
+    },
+    "/ctx:plan": {
+      "description": "Document a development plan for parallel execution (modular YAML)",
+      "keywords": [
+        "create plan",
+        "development plan",
+        "parallel plan",
+        "plan tasks",
+        "make plan",
+        "plan development",
+        "create development plan"
+      ],
+      "category": "General",
+      "file": "commands/ctx-plan.md"
+    },
+    "/ctx:cleanup": {
+      "description": "Clean up completed worktrees and branches",
+      "keywords": [
+        "clean up",
+        "cleanup worktrees",
+        "remove worktrees",
+        "cleanup tasks",
+        "cleanup parallel",
+        "remove completed",
+        "clean worktrees"
+      ],
+      "category": "General",
+      "file": "commands/ctx-cleanup.md"
+    },
+    "/ctx:stats": {
+      "description": "View Promptune detection statistics",
+      "keywords": [
+        "show stats",
+        "statistics",
+        "detection stats",
+        "performance metrics",
+        "stats",
+        "metrics",
+        "show statistics"
+      ],
+      "category": "General",
+      "file": "commands/ctx-stats.md"
+    }
+  },
+  "skills": {
+    "ctx:performance": {
+      "description": "Analyze and optimize parallel workflow performance. Use when users report slow parallel execution, want to improve speed, or need performance analysis. Activate for questions about bottlenecks, time savings, optimization opportunities, or benchmarking parallel workflows.",
+      "keywords": [
+        "performance",
+        "optimize",
+        "slow execution",
+        "bottleneck",
+        "benchmark",
+        "time savings",
+        "speedup",
+        "parallel efficiency",
+        "workflow optimization",
+        "measure performance",
+        "cost savings"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Grep",
+        "Glob",
+        "TodoWrite"
+      ],
+      "file": "skills/performance-optimizer/SKILL.md"
+    },
+    "ctx:architect": {
+      "description": "Systematic architecture analysis following Understand \u2192 Research \u2192 Specify \u2192 Decompose \u2192 Plan workflow. Use for system design, solution evaluation, build vs buy decisions, and task decomposition. Activate when users say \"design\", \"architect\", \"break down\", \"best approach\", or \"should I build\".",
+      "keywords": [
+        "design",
+        "architect",
+        "architecture",
+        "system design",
+        "break down",
+        "best approach",
+        "should i build",
+        "build vs buy",
+        "task decomposition",
+        "specifications",
+        "technical design"
+      ],
+      "allowed_tools": [],
+      "file": "skills/software-architect/SKILL.md"
+    },
+    "ctx:parallel-expert": {
+      "description": "Expert guidance on parallel development workflows using git worktrees and multi-agent execution. Use when users mention parallel work, concurrent development, speeding up development, working on multiple features simultaneously, or scaling team productivity. Activate for questions about task decomposition, worktree management, or parallelization strategies.",
+      "keywords": [
+        "parallel",
+        "concurrent",
+        "speed up development",
+        "multiple features",
+        "work simultaneously",
+        "independent tasks",
+        "parallelization",
+        "parallel workflow",
+        "concurrent development",
+        "multiple tasks"
+      ],
+      "allowed_tools": [],
+      "file": "skills/parallel-development-expert/SKILL.md"
+    },
+    "ctx:help": {
+      "description": "Help users discover Promptune capabilities and understand how to use natural language commands. Use when users ask about Promptune features, available commands, how to use the plugin, or what they can do. Activate for questions like \"what can Promptune do?\", \"how do I use this?\", \"show me examples\", \"what commands are available?\"",
+      "keywords": [
+        "what can promptune do",
+        "how to use",
+        "show me examples",
+        "what commands",
+        "promptune help",
+        "promptune documentation",
+        "how does promptune work",
+        "what is promptune",
+        "available commands",
+        "plugin features"
+      ],
+      "allowed_tools": [],
+      "file": "skills/intent-recognition/SKILL.md"
+    },
+    "ctx:researcher": {
+      "description": "Efficiently research topics using parallel agents via Promptune's /ctx:research command. Use when users ask to research, investigate, find information about topics, compare options, or evaluate libraries/tools. Activate for questions like \"research best X\", \"what's the best library for Y\", or \"investigate Z\".",
+      "keywords": [
+        "research",
+        "investigate",
+        "find information",
+        "compare",
+        "whats the best",
+        "which library",
+        "evaluate options"
+      ],
+      "allowed_tools": [],
+      "file": "skills/researcher/SKILL.md"
+    },
+    "ctx:worktree": {
+      "description": "Expert-level git worktree troubleshooting, cleanup, and management. Use when users have worktree issues, conflicts, cleanup needs, or questions about git worktree commands. Activate for problems like stuck worktrees, locked files, orphaned branches, or worktree removal errors.",
+      "keywords": [
+        "worktree issue",
+        "cant remove worktree",
+        "worktree locked",
+        "worktree cleanup",
+        "orphaned branch",
+        "worktree error",
+        "worktree conflict",
+        "git worktree",
+        "worktree removal"
+      ],
+      "allowed_tools": [
+        "Bash",
+        "Read",
+        "Grep",
+        "TodoWrite"
+      ],
+      "file": "skills/git-worktree-master/SKILL.md"
+    }
+  },
+  "agents": {
+    "agent:worktree-manager": {
+      "description": "Expert git worktree management and troubleshooting. Handles worktree creation, cleanup, lock file resolution, and diagnostic operations. Use for worktree lifecycle management and troubleshooting.",
+      "keywords": [
+        "worktree stuck",
+        "worktree locked",
+        "worktree error",
+        "remove worktree failed",
+        "cant remove worktree",
+        "worktree issue",
+        "fix worktree",
+        "worktree problem"
+      ],
+      "subagent_type": "promptune:worktree-manager",
+      "file": "agents/worktree-manager.md"
+    },
+    "agent:test-runner": {
+      "description": "Autonomous test execution and reporting across multiple languages and frameworks. Runs tests, generates reports, creates GitHub issues for failures, tracks coverage, and performs benchmarking. Optimized for cost-efficiency with Haiku 4.5.",
+      "keywords": [
+        "run tests",
+        "execute tests",
+        "test suite",
+        "test coverage",
+        "test report",
+        "failing tests"
+      ],
+      "subagent_type": "promptune:test-runner",
+      "file": "agents/test-runner.md"
+    },
+    "agent:parallel-task-executor": {
+      "description": "Autonomous execution of independent development tasks in parallel. Handles complete workflow from issue creation to testing and deployment. Use for any task that can run independently - features, bug fixes, refactoring. Optimized for cost-efficiency with Haiku 4.5.",
+      "keywords": [
+        "implement feature",
+        "execute task",
+        "build feature",
+        "complete implementation",
+        "autonomous execution"
+      ],
+      "subagent_type": "promptune:parallel-task-executor",
+      "file": "agents/parallel-task-executor.md"
+    },
+    "agent:performance-analyzer": {
+      "description": "Benchmark and analyze parallel workflow performance. Measures timing, identifies bottlenecks, calculates speedup metrics (Amdahl's Law), generates cost comparisons, and provides optimization recommendations. Use for workflow performance analysis and cost optimization.",
+      "keywords": [
+        "analyze performance",
+        "benchmark workflow",
+        "measure speed",
+        "performance bottleneck",
+        "workflow optimization",
+        "calculate speedup"
+      ],
+      "subagent_type": "promptune:performance-analyzer",
+      "file": "agents/performance-analyzer.md"
+    },
+    "agent:issue-orchestrator": {
+      "description": "GitHub issue management specialist. Creates, updates, labels, links, and manages issues efficiently. Handles bulk operations and templating. Perfect for deterministic GitHub operations at 87% cost savings with Haiku 4.5.",
+      "keywords": [
+        "create issue",
+        "manage issues",
+        "github issues",
+        "label issues",
+        "bulk issues",
+        "issue template"
+      ],
+      "subagent_type": "promptune:issue-orchestrator",
+      "file": "agents/issue-orchestrator.md"
+    }
+  }
+}

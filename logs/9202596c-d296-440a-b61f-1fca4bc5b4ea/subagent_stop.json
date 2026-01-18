@@ -1,0 +1,22 @@
+[
+	{
+		"session_id": "9202596c-d296-440a-b61f-1fca4bc5b4ea",
+		"transcript_path": "/Users/promptune/.claude/projects/-Users-promptune-DevProjects-promptune/9202596c-d296-440a-b61f-1fca4bc5b4ea.jsonl",
+		"cwd": "/Users/promptune/DevProjects/promptune",
+		"permission_mode": "default",
+		"hook_event_name": "SubagentStop",
+		"stop_hook_active": false,
+		"agent_id": "0787a706",
+		"agent_transcript_path": "/Users/promptune/.claude/projects/-Users-promptune-DevProjects-promptune/agent-0787a706.jsonl"
+	},
+	{
+		"session_id": "9202596c-d296-440a-b61f-1fca4bc5b4ea",
+		"transcript_path": "/Users/promptune/.claude/projects/-Users-promptune-DevProjects-promptune/9202596c-d296-440a-b61f-1fca4bc5b4ea.jsonl",
+		"cwd": "/Users/promptune/DevProjects/promptune",
+		"permission_mode": "default",
+		"hook_event_name": "SubagentStop",
+		"stop_hook_active": false,
+		"agent_id": "a44e5f06",
+		"agent_transcript_path": "/Users/promptune/.claude/projects/-Users-promptune-DevProjects-promptune/agent-a44e5f06.jsonl"
+	}
+]

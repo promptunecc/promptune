@@ -1,0 +1,10 @@
+[
+	{
+		"session_id": "07e3d465-e638-4f7d-845c-0ed86d7474fb",
+		"transcript_path": "/Users/promptune/.claude/projects/-Users-promptune-DevProjects-promptune/07e3d465-e638-4f7d-845c-0ed86d7474fb.jsonl",
+		"cwd": "/Users/promptune/DevProjects/promptune",
+		"permission_mode": "default",
+		"hook_event_name": "Stop",
+		"stop_hook_active": false
+	}
+]

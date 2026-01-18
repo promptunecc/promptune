@@ -1,0 +1,1290 @@
+# Promptune Feature Improvement Tracking
+# Version: 1.0
+# Created: 2025-10-27
+# Purpose: Track improvement opportunities from Claude Code release notes analysis
+
+metadata:
+  project: "promptune"
+  version: "0.8.9"
+  created: "2025-10-27"
+  last_updated: "2025-10-27"
+  tracking_version: "1.0"
+  source: "PLUGIN_IMPROVEMENTS.md"
+
+# Prioritization scoring
+# Priority = (Impact Score / Effort Score) * Risk Multiplier
+# Impact: 1-10 (cost savings, UX, reliability, performance)
+# Effort: 1-10 (tokens, complexity, testing)
+# Risk: 0.5 (high), 0.75 (medium), 1.0 (low)
+#
+# Token-Based Estimation:
+# - Small: 5K-15K tokens (simple changes, low complexity)
+# - Medium: 15K-40K tokens (substantial changes, moderate complexity)
+# - Large: 40K-80K tokens (major changes, high complexity)
+# - Complex: 80K+ tokens (architectural changes, very high complexity)
+
+features:
+  # ============================================================
+  # PRIORITY 1: CRITICAL (Immediate Impact)
+  # ============================================================
+
+  - id: "feat-001"
+    name: "Haiku 4.5 Integration"
+    category: "cost-optimization"
+    priority: "critical"
+    status: "planned"
+    phase: 1
+
+    description: |
+      Upgrade ClaudeCodeHaikuEngineer to use explicit Haiku 4.5 model
+      (claude-haiku-4-5-20250929) for 87% cost reduction in intent analysis.
+
+    motivation: |
+      Current implementation uses generic "claude" which may use Sonnet.
+      Explicit Haiku 4.5 provides 87% cost savings + 2-3x faster response.
+
+    impact:
+      cost: "-40% to -50%"
+      performance: "+200% to +300%"
+      reliability: "neutral"
+      ux: "neutral"
+      score: 9  # High impact
+
+    effort:
+      estimated_tokens: 10000  # 10K tokens (Small complexity)
+      token_breakdown:
+        context: 3000    # Read user_prompt_submit.py, understand ClaudeCodeHaikuEngineer
+        reasoning: 2000  # Simple model string update decision
+        output: 5000     # Code change, tests, benchmarks, docs
+      complexity: "low"
+      risk: "low"
+      score: 2  # Low effort
+
+      # Cost estimates
+      cost_haiku: "$0.012"     # (3K × $0.00025 + 7K × $0.00125) / 1000
+      cost_sonnet: "$0.045"    # (3K × $0.003 + 7K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 4
+
+    priority_score: 4.5  # 9/2 * 1.0
+
+    dependencies: []
+
+    blocks: ["feat-003", "feat-004", "feat-009"]
+
+    implementation:
+      files:
+        - "hooks/user_prompt_submit.py"
+      changes:
+        - "Update model string: claude-haiku-4-5-20250929"
+        - "Test performance benchmarks"
+        - "Verify cost reduction"
+        - "Update documentation"
+      lines_changed: ~10
+
+    testing:
+      - "Benchmark latency (target <200ms P95)"
+      - "Verify cost reduction (target 87%)"
+      - "Test accuracy (maintain ≥85%)"
+      - "A/B test vs current approach"
+
+    rollout:
+      strategy: "immediate"
+      rollback_plan: "Revert model string to 'claude'"
+
+    metadata:
+      release_note: "v2.0.17 (Added Haiku 4.5)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "$200/month savings"
+      effort_to_value: "very_high"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-002"
+    name: "AskUserQuestion Integration"
+    category: "ux-improvement"
+    priority: "critical"
+    status: "planned"
+    phase: 1
+
+    description: |
+      Use AskUserQuestion tool for interactive command verification instead
+      of text suggestions in conversation. Hybrid approach with 3-tier
+      confidence thresholds.
+
+    motivation: |
+      Native UI provides better UX than text in conversation. Users can
+      select from multiple options with descriptions. Reduces conversation
+      clutter.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "+10%"
+      ux: "+30%"
+      score: 7  # Medium-high impact
+
+    effort:
+      estimated_tokens: 30000  # 30K tokens (Medium complexity)
+      token_breakdown:
+        context: 8000    # Read hook, config system, additionalContext docs
+        reasoning: 7000  # Design 3-tier confidence system, UX flow
+        output: 15000    # Implementation, tests, documentation
+      complexity: "medium"
+      risk: "medium"
+      score: 6  # Medium effort
+
+      # Cost estimates
+      cost_haiku: "$0.035"     # (8K × $0.00025 + 22K × $0.00125) / 1000
+      cost_sonnet: "$0.195"    # (8K × $0.003 + 22K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 16
+
+    priority_score: 0.875  # 7/6 * 0.75
+
+    dependencies: []
+
+    benefits_from: ["feat-001"]  # Haiku makes this cheaper
+
+    implementation:
+      files:
+        - "hooks/user_prompt_submit.py"
+        - "config.json"
+      changes:
+        - "Add configuration system with thresholds"
+        - "Implement should_ask_user() logic"
+        - "Create create_ask_user_question_instruction()"
+        - "Update main() with 3-way decision"
+        - "Add observability tracking"
+      lines_changed: ~200
+
+    testing:
+      - "Test high confidence (≥95%): auto-execute"
+      - "Test medium confidence (70-95%): ask user"
+      - "Test low confidence (<70%): text suggestion"
+      - "User acceptance testing (10 users)"
+      - "Measure response rates"
+
+    rollout:
+      strategy: "opt-in-beta"
+      rollback_plan: "Disable via config flag"
+
+    metadata:
+      release_note: "v2.0.21 (Interactive question tool)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "+25% user engagement"
+      effort_to_value: "high"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-003"
+    name: "PreToolUse Input Modifications"
+    category: "reliability"
+    priority: "critical"
+    status: "planned"
+    phase: 2
+
+    description: |
+      Enhance PreToolUse hook to modify tool inputs for optimization:
+      - Auto-add timeouts to Bash commands
+      - Add limits to Read tool for large files
+      - Route Task tool to Haiku when appropriate
+      - Add sandbox mode detection
+
+    motivation: |
+      Prevent timeout errors before they happen. Automatically optimize
+      tool calls without Claude knowing. Add safety guards.
+
+    impact:
+      cost: "-10% to -15%"
+      performance: "neutral"
+      reliability: "+40%"
+      ux: "+15%"
+      score: 8  # High impact
+
+    effort:
+      estimated_tokens: 28000  # 28K tokens (Medium complexity)
+      token_breakdown:
+        context: 7000    # Read tool schemas, hook docs, existing patterns
+        reasoning: 6000  # Design optimization rules, safety checks
+        output: 15000    # Implementation, comprehensive tests
+      complexity: "medium"
+      risk: "medium"
+      score: 5  # Medium effort
+
+      # Cost estimates
+      cost_haiku: "$0.032"     # (7K × $0.00025 + 21K × $0.00125) / 1000
+      cost_sonnet: "$0.177"    # (7K × $0.003 + 21K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 12
+
+    priority_score: 1.2  # 8/5 * 0.75
+
+    dependencies: ["feat-001"]  # Needs Haiku 4.5 for routing
+
+    blocks: []
+
+    implementation:
+      files:
+        - "hooks/tool_router.py"
+      changes:
+        - "Add optimize_tool_call() function"
+        - "Bash: detect long-running commands, add timeout"
+        - "Bash: detect background-able commands"
+        - "Read: add limits for large files"
+        - "Task: detect search tasks, route to Explore"
+        - "Add sandbox mode detection"
+      lines_changed: ~150
+
+    testing:
+      - "Test Bash timeout auto-addition"
+      - "Test Bash background suggestion"
+      - "Test Read limit auto-addition"
+      - "Test Task routing to Haiku"
+      - "Measure reliability improvement"
+
+    rollout:
+      strategy: "gradual"
+      rollback_plan: "Remove modifiedToolInput"
+
+    metadata:
+      release_note: "v2.0.10 (PreToolUse can modify inputs)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "-30% error rate"
+      effort_to_value: "very_high"
+
+  # ============================================================
+  # PRIORITY 2: HIGH VALUE (Significant Impact)
+  # ============================================================
+
+  - id: "feat-004"
+    name: "Explore Subagent Integration"
+    category: "cost-optimization"
+    priority: "high"
+    status: "planned"
+    phase: 2
+
+    description: |
+      Integrate with Explore subagent (Haiku-powered) for efficient
+      codebase search. Detect search intents and suggest Explore.
+
+    motivation: |
+      Explore subagent is 87% cheaper and faster for search tasks.
+      Preserves main session context.
+
+    impact:
+      cost: "-20% for search tasks"
+      performance: "+500% for search"
+      reliability: "neutral"
+      ux: "+20%"
+      score: 7
+
+    effort:
+      estimated_tokens: 15000  # 15K tokens (Small-Medium complexity)
+      token_breakdown:
+        context: 4000    # Read Explore docs, agent patterns, routing logic
+        reasoning: 3000  # Design detection keywords, routing strategy
+        output: 8000     # Agent creation, hook integration, tests
+      complexity: "low"
+      risk: "low"
+      score: 3
+
+      # Cost estimates
+      cost_haiku: "$0.018"     # (4K × $0.00025 + 11K × $0.00125) / 1000
+      cost_sonnet: "$0.099"    # (4K × $0.003 + 11K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 8
+
+    priority_score: 2.33  # 7/3 * 1.0
+
+    dependencies: ["feat-001"]
+
+    blocks: []
+
+    implementation:
+      files:
+        - "agents/explore-router.md"
+        - "hooks/user_prompt_submit.py"
+      changes:
+        - "Create explore-router agent"
+        - "Add suggest_explore_subagent() function"
+        - "Detect search keywords"
+        - "Add tip in additionalContext"
+      lines_changed: ~100
+
+    testing:
+      - "Test search intent detection"
+      - "Verify Explore subagent suggestion"
+      - "Measure cost savings"
+      - "Measure performance improvement"
+
+    rollout:
+      strategy: "immediate"
+      rollback_plan: "Remove suggestion logic"
+
+    metadata:
+      release_note: "v2.0.17 (Explore subagent)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "$50/month on search tasks"
+      effort_to_value: "very_high"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-005"
+    name: "SlashCommand Tool Integration"
+    category: "ux-improvement"
+    priority: "high"
+    status: "planned"
+    phase: 2
+
+    description: |
+      Enable auto-execution of high-confidence detections via SlashCommand
+      tool. Only for safe (read-only) commands.
+
+    motivation: |
+      Seamless UX for high-confidence matches. Reduces friction.
+      User doesn't need to type command.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "neutral"
+      ux: "+25%"
+      score: 6
+
+    effort:
+      estimated_tokens: 18000  # 18K tokens (Small-Medium complexity)
+      token_breakdown:
+        context: 5000    # Read hook, SlashCommand tool docs, safety requirements
+        reasoning: 4000  # Design safe command list, auto-execute logic
+        output: 9000     # Implementation, safety tests, documentation
+      complexity: "medium"
+      risk: "medium"
+      score: 4
+
+      # Cost estimates
+      cost_haiku: "$0.021"     # (5K × $0.00025 + 13K × $0.00125) / 1000
+      cost_sonnet: "$0.117"    # (5K × $0.003 + 13K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 8
+
+    priority_score: 1.125  # 6/4 * 0.75
+
+    dependencies: []
+
+    complementary_with: ["feat-002"]  # AskUserQuestion
+
+    implementation:
+      files:
+        - "hooks/user_prompt_submit.py"
+      changes:
+        - "Add should_auto_execute() function"
+        - "Define safe commands list"
+        - "Create create_auto_execute_response()"
+        - "Add SlashCommand tool request to additionalContext"
+      lines_changed: ~80
+
+    testing:
+      - "Test auto-execute for safe commands"
+      - "Verify blocking of unsafe commands"
+      - "Test with various confidence levels"
+      - "User feedback on auto-execution"
+
+    rollout:
+      strategy: "opt-in-beta"
+      rollback_plan: "Disable auto-execution"
+
+    metadata:
+      release_note: "v1.0.123 (SlashCommand tool)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "+15% command usage"
+      effort_to_value: "high"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-006"
+    name: "SessionEnd Hook Analytics"
+    category: "analytics"
+    priority: "high"
+    status: "planned"
+    phase: 1
+
+    description: |
+      Add SessionEnd hook to generate session summary with:
+      - Total detections
+      - Commands used
+      - Average confidence
+      - Cost saved
+      - Actionable tips
+
+    motivation: |
+      Users see value of plugin. Completion tracking. Actionable tips
+      for better usage.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "neutral"
+      ux: "+20%"
+      score: 5
+
+    effort:
+      estimated_tokens: 16000  # 16K tokens (Medium complexity)
+      token_breakdown:
+        context: 4000    # Read observability DB, SessionEnd hook docs
+        reasoning: 3000  # Design summary metrics, tip generation logic
+        output: 9000     # Hook script, DB queries, formatting, tests
+      complexity: "low"
+      risk: "low"
+      score: 3
+
+      # Cost estimates
+      cost_haiku: "$0.019"     # (4K × $0.00025 + 12K × $0.00125) / 1000
+      cost_sonnet: "$0.105"    # (4K × $0.003 + 12K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 8
+
+    priority_score: 1.67  # 5/3 * 1.0
+
+    dependencies: []
+
+    blocks: []
+
+    implementation:
+      files:
+        - "hooks/hooks.json"
+        - "hooks/session_end.js"
+      changes:
+        - "Add SessionEnd hook registration"
+        - "Create session_end.js script"
+        - "Query observability DB for stats"
+        - "Generate summary and tips"
+      lines_changed: ~150
+
+    testing:
+      - "Test summary generation"
+      - "Verify tip logic"
+      - "Test with zero detections"
+      - "Test with high usage"
+
+    rollout:
+      strategy: "immediate"
+      rollback_plan: "Remove hook registration"
+
+    metadata:
+      release_note: "v1.0.85 (SessionEnd hook)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "+20% user engagement"
+      effort_to_value: "high"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-007"
+    name: "MCP Server for Analytics"
+    category: "integration"
+    priority: "high"
+    status: "planned"
+    phase: 3
+
+    description: |
+      Create MCP server exposing Promptune analytics as tools.
+      Uses structured content (v2.0.21 feature).
+
+    motivation: |
+      Claude can query stats programmatically. Enables automation.
+      Better workflow integration.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "neutral"
+      ux: "+15% (power users)"
+      score: 4
+
+    effort:
+      estimated_tokens: 50000  # 50K tokens (Large complexity)
+      token_breakdown:
+        context: 12000   # Read MCP protocol, structured content docs, examples
+        reasoning: 13000 # Design server architecture, tool schema, protocol
+        output: 25000    # Server implementation, tools, tests, integration
+      complexity: "high"
+      risk: "medium"
+      score: 8
+
+      # Cost estimates
+      cost_haiku: "$0.058"     # (12K × $0.00025 + 38K × $0.00125) / 1000
+      cost_sonnet: "$0.321"    # (12K × $0.003 + 38K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 24
+
+    priority_score: 0.375  # 4/8 * 0.75
+
+    dependencies: ["feat-006"]  # Needs SessionEnd analytics
+
+    blocks: []
+
+    implementation:
+      files:
+        - "mcp-servers/promptune-analytics.json"
+        - "mcp-server/server.js"
+        - "mcp-server/package.json"
+      changes:
+        - "Create MCP server scaffold"
+        - "Implement get_promptune_stats tool"
+        - "Use structuredContent format"
+        - "Add to plugin.json"
+      lines_changed: ~500
+
+    testing:
+      - "Test MCP server startup"
+      - "Test tool calls"
+      - "Verify structured content"
+      - "Test with Claude"
+
+    rollout:
+      strategy: "opt-in"
+      rollback_plan: "Remove MCP server config"
+
+    metadata:
+      release_note: "v2.0.21 (MCP structured content)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "Power user feature"
+      effort_to_value: "medium"
+
+  # ============================================================
+  # PRIORITY 3: NICE TO HAVE (Quality of Life)
+  # ============================================================
+
+  - id: "feat-008"
+    name: "/doctor Integration"
+    category: "support"
+    priority: "medium"
+    status: "planned"
+    phase: 3
+
+    description: |
+      Provide diagnostic context when errors occur. Enable self-serve
+      debugging via /doctor command.
+
+    motivation: |
+      Better error messages. Users can diagnose issues. Reduces support
+      burden.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "+5%"
+      ux: "+10%"
+      score: 3
+
+    effort:
+      estimated_tokens: 12000  # 12K tokens (Small complexity)
+      token_breakdown:
+        context: 3000    # Read hook, /doctor integration docs
+        reasoning: 2000  # Design diagnostic checks, error messages
+        output: 7000     # Implementation, tests, documentation
+      complexity: "low"
+      risk: "low"
+      score: 2
+
+      # Cost estimates
+      cost_haiku: "$0.014"     # (3K × $0.00025 + 9K × $0.00125) / 1000
+      cost_sonnet: "$0.078"    # (3K × $0.003 + 9K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 6
+
+    priority_score: 1.5  # 3/2 * 1.0
+
+    dependencies: []
+
+    blocks: []
+
+    implementation:
+      files:
+        - "hooks/user_prompt_submit.py"
+      changes:
+        - "Add provide_doctor_context() function"
+        - "Check matchers availability"
+        - "Check data files existence"
+        - "Return structured diagnostic info"
+      lines_changed: ~50
+
+    testing:
+      - "Test error scenarios"
+      - "Verify diagnostic output"
+      - "Test with /doctor command"
+
+    rollout:
+      strategy: "immediate"
+      rollback_plan: "Remove diagnostic messages"
+
+    metadata:
+      release_note: "v1.0.68 (/doctor for debugging)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "-20% support tickets"
+      effort_to_value: "high"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-009"
+    name: "Plugin Validation CI/CD"
+    category: "quality"
+    priority: "medium"
+    status: "planned"
+    phase: 4
+
+    description: |
+      Automated plugin validation using /plugin validate command.
+      GitHub Actions workflow for CI/CD.
+
+    motivation: |
+      Catch errors before release. Automated testing. Prevent breaking
+      changes.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "+20% (prevent bugs)"
+      ux: "neutral"
+      score: 4
+
+    effort:
+      estimated_tokens: 22000  # 22K tokens (Medium complexity)
+      token_breakdown:
+        context: 6000    # Read plugin validation docs, CI/CD patterns
+        reasoning: 5000  # Design workflow, validation strategy
+        output: 11000    # GitHub Actions, scripts, tests, documentation
+      complexity: "medium"
+      risk: "low"
+      score: 4
+
+      # Cost estimates
+      cost_haiku: "$0.026"     # (6K × $0.00025 + 16K × $0.00125) / 1000
+      cost_sonnet: "$0.144"    # (6K × $0.003 + 16K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 12
+
+    priority_score: 1.0  # 4/4 * 1.0
+
+    dependencies: []
+
+    blocks: []
+
+    implementation:
+      files:
+        - ".github/workflows/validate-plugin.yml"
+        - "scripts/test-hooks.sh"
+      changes:
+        - "Create GitHub Actions workflow"
+        - "Add plugin validation step"
+        - "Test hook execution"
+        - "Validate JSON files"
+      lines_changed: ~100
+
+    testing:
+      - "Test workflow execution"
+      - "Test validation catches errors"
+      - "Test on pull requests"
+
+    rollout:
+      strategy: "immediate"
+      rollback_plan: "Disable workflow"
+
+    metadata:
+      release_note: "v2.0.12 (/plugin validate)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "Quality assurance"
+      effort_to_value: "medium"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-010"
+    name: "Sandbox Mode Support"
+    category: "reliability"
+    priority: "low"
+    status: "planned"
+    phase: 4
+
+    description: |
+      Detect sandbox mode and adjust tool routing accordingly.
+      Warn about commands that won't work in sandbox.
+
+    motivation: |
+      Better UX in sandbox mode. Prevent confusing errors.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "+5% (sandbox users)"
+      ux: "+10% (sandbox users)"
+      score: 2
+
+    effort:
+      estimated_tokens: 9000   # 9K tokens (Small complexity)
+      token_breakdown:
+        context: 2000    # Read sandbox docs, tool routing patterns
+        reasoning: 2000  # Design sandbox detection, warning logic
+        output: 5000     # Implementation, tests, documentation
+      complexity: "low"
+      risk: "low"
+      score: 2
+
+      # Cost estimates
+      cost_haiku: "$0.011"     # (2K × $0.00025 + 7K × $0.00125) / 1000
+      cost_sonnet: "$0.061"    # (2K × $0.003 + 7K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 4
+
+    priority_score: 1.0  # 2/2 * 1.0
+
+    dependencies: []
+
+    blocks: []
+
+    implementation:
+      files:
+        - "hooks/tool_router.py"
+      changes:
+        - "Add is_sandbox_mode() function"
+        - "Detect problematic commands"
+        - "Add warnings in systemMessage"
+      lines_changed: ~50
+
+    testing:
+      - "Test in sandbox mode"
+      - "Test warnings appear"
+      - "Test normal mode unaffected"
+
+    rollout:
+      strategy: "immediate"
+      rollback_plan: "Remove sandbox detection"
+
+    metadata:
+      release_note: "v2.0.24 (Sandbox mode)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "Niche use case"
+      effort_to_value: "medium"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-011"
+    name: "Dynamic Model Selection"
+    category: "cost-optimization"
+    priority: "medium"
+    status: "planned"
+    phase: 3
+
+    description: |
+      Agents dynamically choose Haiku vs Sonnet based on task complexity.
+      Automatic cost optimization.
+
+    motivation: |
+      87% cost savings on simple tasks. Quality maintained for complex
+      tasks.
+
+    impact:
+      cost: "-15% to -20%"
+      performance: "neutral"
+      reliability: "neutral"
+      ux: "neutral"
+      score: 6
+
+    effort:
+      estimated_tokens: 35000  # 35K tokens (Medium-Large complexity)
+      token_breakdown:
+        context: 9000    # Read agent patterns, model docs, complexity metrics
+        reasoning: 8000  # Design complexity scoring, model selection logic
+        output: 18000    # Scorer implementation, agent updates, tests, tracking
+      complexity: "high"
+      risk: "medium"
+      score: 6
+
+      # Cost estimates
+      cost_haiku: "$0.041"     # (9K × $0.00025 + 26K × $0.00125) / 1000
+      cost_sonnet: "$0.228"    # (9K × $0.003 + 26K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 16
+
+    priority_score: 0.75  # 6/6 * 0.75
+
+    dependencies: ["feat-001"]
+
+    blocks: []
+
+    implementation:
+      files:
+        - "agents/parallel-task-executor.md"
+        - "lib/complexity_scorer.py"
+      changes:
+        - "Create complexity scoring function"
+        - "Add model selection logic to agents"
+        - "Track model usage in observability"
+        - "Measure cost savings"
+      lines_changed: ~200
+
+    testing:
+      - "Test complexity scoring"
+      - "Verify model selection"
+      - "Measure cost impact"
+      - "Test quality maintenance"
+
+    rollout:
+      strategy: "gradual"
+      rollback_plan: "Revert to fixed models"
+
+    metadata:
+      release_note: "v2.0.28 (Dynamic model selection)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "$100/month savings"
+      effort_to_value: "medium"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-012"
+    name: "Plan Subagent Integration"
+    category: "ux-improvement"
+    priority: "low"
+    status: "planned"
+    phase: 4
+
+    description: |
+      Create skill for delegating to Plan subagent. Complements /ctx:plan
+      command.
+
+    motivation: |
+      Seamless planning experience. Works with Claude's native capabilities.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "neutral"
+      ux: "+10%"
+      score: 2
+
+    effort:
+      estimated_tokens: 14000  # 14K tokens (Small-Medium complexity)
+      token_breakdown:
+        context: 4000    # Read Plan subagent docs, skill patterns
+        reasoning: 3000  # Design skill structure, activation triggers
+        output: 7000     # Skill documentation, examples, tests
+      complexity: "low"
+      risk: "low"
+      score: 3
+
+      # Cost estimates
+      cost_haiku: "$0.017"     # (4K × $0.00025 + 10K × $0.00125) / 1000
+      cost_sonnet: "$0.093"    # (4K × $0.003 + 10K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 8
+
+    priority_score: 0.67  # 2/3 * 1.0
+
+    dependencies: []
+
+    blocks: []
+
+    implementation:
+      files:
+        - "skills/plan-delegation/SKILL.md"
+      changes:
+        - "Create skill documentation"
+        - "Add trigger phrases"
+        - "Document comparison to /ctx:plan"
+      lines_changed: ~100
+
+    testing:
+      - "Test skill activation"
+      - "Test delegation"
+      - "User feedback"
+
+    rollout:
+      strategy: "immediate"
+      rollback_plan: "Remove skill"
+
+    metadata:
+      release_note: "v2.0.28 (Plan subagent)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "UX improvement"
+      effort_to_value: "low"
+
+  # ============================================================
+  # FUTURE / RESEARCH NEEDED
+  # ============================================================
+
+  - id: "feat-013"
+    name: "Improved Thinking Mode Display"
+    category: "ux-improvement"
+    priority: "low"
+    status: "research"
+    phase: 4
+
+    description: |
+      Leverage v1.0.115 enhanced thinking mode display with visual effects.
+
+    motivation: |
+      Better UX when Haiku analysis runs. Show progress.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "neutral"
+      ux: "+5%"
+      score: 1
+
+    effort:
+      estimated_tokens: 18000  # 18K tokens (Small-Medium complexity)
+      token_breakdown:
+        context: 5000    # Research thinking mode APIs, visual effects
+        reasoning: 4000  # Design integration approach, UX flow
+        output: 9000     # Implementation, tests, documentation
+      complexity: "medium"
+      risk: "low"
+      score: 4
+
+      # Cost estimates
+      cost_haiku: "$0.021"     # (5K × $0.00025 + 13K × $0.00125) / 1000
+      cost_sonnet: "$0.117"    # (5K × $0.003 + 13K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 8
+
+    priority_score: 0.25  # 1/4 * 1.0
+
+    dependencies: []
+
+    blocks: []
+
+    implementation:
+      files:
+        - "hooks/user_prompt_submit.py"
+      changes:
+        - "Research thinking mode integration"
+        - "Add visual indicators"
+      lines_changed: "unknown"
+
+    testing:
+      - "Test visual display"
+      - "User feedback"
+
+    rollout:
+      strategy: "research-first"
+      rollback_plan: "N/A"
+
+    metadata:
+      release_note: "v1.0.115 (Enhanced thinking display)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "Minor UX improvement"
+      effort_to_value: "low"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-014"
+    name: "Ctrl-R History Search Integration"
+    category: "ux-improvement"
+    priority: "low"
+    status: "research"
+    phase: 4
+
+    description: |
+      Consider if Promptune should integrate with Ctrl-R history search.
+
+    motivation: |
+      Users could search for previously detected commands.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "neutral"
+      ux: "+5%"
+      score: 1
+
+    effort:
+      estimated_tokens: 38000  # 38K tokens (Medium-Large complexity)
+      token_breakdown:
+        context: 10000   # Research history APIs, integration patterns
+        reasoning: 9000  # Design integration architecture, determine value
+        output: 19000    # Implementation, tests, documentation
+      complexity: "high"
+      risk: "medium"
+      score: 7
+
+      # Cost estimates
+      cost_haiku: "$0.044"     # (10K × $0.00025 + 28K × $0.00125) / 1000
+      cost_sonnet: "$0.245"    # (10K × $0.003 + 28K × $0.015) / 1000
+
+      # Time reference (sequential execution)
+      equivalent_hours: 16
+
+    priority_score: 0.107  # 1/7 * 0.75
+
+    dependencies: []
+
+    blocks: []
+
+    implementation:
+      files:
+        - "unknown"
+      changes:
+        - "Research history integration"
+        - "Determine if valuable"
+      lines_changed: "unknown"
+
+    testing:
+      - "Research phase"
+
+    rollout:
+      strategy: "research-first"
+      rollback_plan: "N/A"
+
+    metadata:
+      release_note: "v1.0.117 (Ctrl-R history search)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "Unknown"
+      effort_to_value: "unknown"
+
+  # ------------------------------------------------------------
+
+  - id: "feat-015"
+    name: "Skills Support Integration"
+    category: "architecture"
+    priority: "low"
+    status: "completed"
+    phase: 0
+
+    description: |
+      Already implemented! Plugin uses Claude Code Skills.
+
+    motivation: |
+      Skills provide better reliability than slash commands.
+
+    impact:
+      cost: "neutral"
+      performance: "neutral"
+      reliability: "+15%"
+      ux: "+10%"
+      score: 5
+
+    effort:
+      estimated_tokens: 0      # 0 tokens (Already completed)
+      token_breakdown:
+        context: 0       # N/A
+        reasoning: 0     # N/A
+        output: 0        # N/A
+      complexity: "N/A"
+      risk: "N/A"
+      score: 0
+
+      # Cost estimates
+      cost_haiku: "$0.000"
+      cost_sonnet: "$0.000"
+
+      # Time reference
+      equivalent_hours: 0
+
+    priority_score: 0  # Already done
+
+    dependencies: []
+
+    blocks: []
+
+    implementation:
+      files:
+        - "skills/*/SKILL.md"
+      changes:
+        - "Already implemented"
+      lines_changed: 0
+
+    testing:
+      - "Already tested"
+
+    rollout:
+      strategy: "completed"
+      rollback_plan: "N/A"
+
+    metadata:
+      release_note: "v2.0.20 (Claude Skills)"
+      created: "2025-10-27"
+      assigned_to: null
+      estimated_value: "Already delivered"
+      effort_to_value: "N/A"
+
+# ============================================================
+# SUMMARY STATISTICS
+# ============================================================
+
+summary:
+  total_features: 15
+  by_status:
+    planned: 13
+    in_progress: 0
+    completed: 1
+    blocked: 0
+    deprecated: 0
+    research: 2
+
+  by_priority:
+    critical: 3
+    high: 4
+    medium: 4
+    low: 4
+
+  by_phase:
+    phase_0: 1  # Already done
+    phase_1: 3  # Quick wins
+    phase_2: 3  # Core improvements
+    phase_3: 4  # Advanced features
+    phase_4: 4  # Quality & polish
+
+  by_category:
+    cost_optimization: 4
+    ux_improvement: 6
+    reliability: 3
+    analytics: 1
+    integration: 1
+    support: 1
+    quality: 1
+    architecture: 1
+
+  independence:
+    independent: 9  # Can execute in parallel
+    dependent: 6    # Require feat-001 or feat-006
+
+  estimated_total_value:
+    cost_savings_monthly: "$350"
+    ux_improvement: "+30%"
+    reliability_improvement: "+40%"
+    performance_improvement: "+300% (search tasks)"
+
+  estimated_total_effort:
+    tokens: 315000  # 315K tokens total
+    cost_haiku: "$0.366"     # If all executed with Haiku
+    cost_sonnet: "$2.028"    # If all executed with Sonnet
+    savings_vs_sonnet: "82%"  # Using Haiku where appropriate
+
+    # Time reference (sequential execution)
+    equivalent_hours: 147
+    equivalent_weeks: 4   # At 40 hours/week sequential
+    equivalent_months: 1  # With parallel execution
+
+# ============================================================
+# EXECUTION PLAN
+# ============================================================
+
+execution_plan:
+  phase_1_quick_wins:
+    duration: "1-2 weeks (sequential) | 2-3 days (parallel)"
+    features: ["feat-001", "feat-002", "feat-006"]
+    parallel: true
+    blockers: []
+    estimated_tokens: 56000    # 56K tokens total
+    cost_haiku: "$0.066"       # If all executed with Haiku
+    cost_sonnet: "$0.345"      # If all executed with Sonnet
+    equivalent_hours: 28
+    estimated_value: "$200/month + 30% UX + 20% engagement"
+
+  phase_2_core:
+    duration: "2-4 weeks (sequential) | 3-5 days (parallel after feat-001)"
+    features: ["feat-003", "feat-004", "feat-005"]
+    parallel: false  # Depends on feat-001
+    blockers: ["feat-001"]
+    estimated_tokens: 61000    # 61K tokens total
+    cost_haiku: "$0.071"       # If all executed with Haiku
+    cost_sonnet: "$0.393"      # If all executed with Sonnet
+    equivalent_hours: 28
+    estimated_value: "$50/month + 40% reliability + 25% UX"
+
+  phase_3_advanced:
+    duration: "1-2 months (sequential) | 5-7 days (parallel)"
+    features: ["feat-007", "feat-009", "feat-011"]
+    parallel: true
+    blockers: []
+    estimated_tokens: 107000   # 107K tokens total
+    cost_haiku: "$0.125"       # If all executed with Haiku
+    cost_sonnet: "$0.693"      # If all executed with Sonnet
+    equivalent_hours: 52
+    estimated_value: "$100/month + power user features"
+
+  phase_4_polish:
+    duration: "ongoing | 2-3 days (parallel)"
+    features: ["feat-008", "feat-010", "feat-012"]
+    parallel: true
+    blockers: []
+    estimated_tokens: 35000    # 35K tokens total
+    cost_haiku: "$0.042"       # If all executed with Haiku
+    cost_sonnet: "$0.232"      # If all executed with Sonnet
+    equivalent_hours: 18
+    estimated_value: "Quality improvements"
+
+# ============================================================
+# ROADMAP VISUALIZATION
+# ============================================================
+
+roadmap: |
+  PHASE 1 (2-3 days parallel): Quick Wins
+  ┌──────────────────────────────────────────────────┐
+  │ feat-001: Haiku 4.5         10K tokens   ████    │
+  │ feat-002: AskUserQuestion   30K tokens   ████    │
+  │ feat-006: SessionEnd        16K tokens   ████    │
+  │                                                   │
+  │ Parallel: 3 worktrees | 56K tokens | $0.066      │
+  │ Value: $200/month + 30% UX                        │
+  └──────────────────────────────────────────────────┘
+
+  PHASE 2 (3-5 days after feat-001): Core Improvements
+  ┌──────────────────────────────────────────────────┐
+  │ feat-003: PreToolUse        28K tokens   ████    │
+  │ feat-004: Explore           15K tokens   ████    │
+  │ feat-005: SlashCommand      18K tokens   ████    │
+  │                                                   │
+  │ Sequential: feat-001 → rest | 61K | $0.071       │
+  │ Value: $50/month + 40% reliability                │
+  └──────────────────────────────────────────────────┘
+
+  PHASE 3 (5-7 days parallel): Advanced Features
+  ┌──────────────────────────────────────────────────┐
+  │ feat-007: MCP Server        50K tokens   ████    │
+  │ feat-009: CI/CD             22K tokens   ████    │
+  │ feat-011: Dynamic Models    35K tokens   ████    │
+  │                                                   │
+  │ Parallel: 3 worktrees | 107K tokens | $0.125     │
+  │ Value: $100/month + power features                │
+  └──────────────────────────────────────────────────┘
+
+  PHASE 4 (2-3 days parallel): Quality & Polish
+  ┌──────────────────────────────────────────────────┐
+  │ feat-008: /doctor           12K tokens   ████    │
+  │ feat-010: Sandbox            9K tokens   ████    │
+  │ feat-012: Plan Subagent     14K tokens   ████    │
+  │                                                   │
+  │ Parallel: 3 worktrees | 35K tokens | $0.042      │
+  │ Value: Quality improvements                       │
+  └──────────────────────────────────────────────────┘
+
+  TOTAL: 259K tokens | $0.304 (Haiku) | $1.663 (Sonnet)
+  Time: 12-18 days (parallel) vs 4 weeks (sequential)

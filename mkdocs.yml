@@ -1,0 +1,227 @@
+site_name: Promptune
+site_description: Precision-tuned context engineering for Claude Code. Optimize context flow with modular plans, parallel workflows, and zero-transformation architecture.
+site_author: Promptune
+site_url: https://promptunecc.github.io/promptune/
+
+# Repository
+repo_name: promptunecc/promptune
+repo_url: https://github.com/promptune/promptune
+edit_uri: edit/master/docs/
+
+# Copyright
+copyright: Copyright &copy; 2025 Promptune Contributors
+
+# Theme Configuration
+theme:
+  name: material
+  language: en
+
+  # Color palette with dark/light mode toggle
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  # Logo and favicon
+  logo: assets/images/logo.png
+  favicon: assets/images/logo.png
+  icon:
+    repo: fontawesome/brands/github
+
+  # Theme features
+  features:
+    # Navigation
+    - navigation.instant # Instant loading
+    - navigation.instant.progress # Progress indicator
+    - navigation.tracking # URL tracking
+    - navigation.tabs # Top-level tabs
+    - navigation.tabs.sticky # Sticky tabs
+    - navigation.sections # Section navigation
+    - navigation.expand # Expand sections
+    - navigation.path # Path breadcrumbs
+    - navigation.indexes # Section index pages
+    - navigation.top # Back to top button
+
+    # Search
+    - search.suggest # Search suggestions
+    - search.highlight # Highlight search terms
+    - search.share # Share search results
+
+    # Content
+    - content.code.copy # Copy code button
+    - content.code.annotate # Code annotations
+    - content.tooltips # Improved tooltips
+    - content.tabs.link # Link content tabs
+
+    # Table of contents
+    - toc.follow # Follow ToC
+    - toc.integrate # Integrate ToC in navigation
+
+# Plugins
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      lang: en
+
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            # Docstring style
+            docstring_style: google
+            docstring_section_style: table
+
+            # Signatures
+            show_signature: true
+            show_signature_annotations: true
+            separate_signature: true
+
+            # Members
+            show_source: true
+            show_root_heading: true
+            show_root_toc_entry: true
+            show_category_heading: true
+            members_order: source
+            group_by_category: true
+            show_submodules: false
+
+            # Headings
+            heading_level: 2
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+
+            # Filters
+            filters:
+              - "!^_" # Exclude private members
+
+            # Other
+            merge_init_into_class: true
+            show_if_no_docstring: false
+
+# Extensions
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      title: On this page
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Extra CSS and JavaScript
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+# Extra configuration
+extra:
+  # Analytics (optional - add your tracking ID)
+  # analytics:
+  #   provider: google
+  #   property: G-XXXXXXXXXX
+
+  # Social links
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/promptune/promptune
+      name: SlashSense on GitHub
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/slashsense/
+      name: SlashSense on PyPI
+
+  # Version selector (for multi-version docs)
+  version:
+    provider: mike
+    default: latest
+
+# Navigation structure
+nav:
+  - Home: index.md
+
+  - Core Features:
+      - Smart Tool Routing: delegation-modes.md
+      - Observability: OBSERVABILITY.md
+      - Prompt Augmentation: PROMPT_AUGMENTATION.md
+      - Skills System: SKILLS.md
+
+  - Architecture:
+      - Haiku Agent Architecture: HAIKU_AGENT_ARCHITECTURE.md
+      - Agent Architecture Summary: AGENT_ARCHITECTURE_SUMMARY.md
+      - Agent Integration Guide: AGENT_INTEGRATION_GUIDE.md
+      - Cost Optimization: COST_OPTIMIZATION_GUIDE.md
+
+  - Usage & Integration:
+      - Usage Integration: USAGE_INTEGRATION.md
+      - Usage Reality Check: USAGE_REALITY_CHECK.md
+      - Auto-Approval Configuration: AUTO_APPROVAL_CONFIGURATION.md
+
+  - Guides:
+      - Research Agents Guide: RESEARCH_AGENTS_GUIDE.md
+      - Research Agent Template - Web Search: research-agents/WEB_SEARCH_SOLUTIONS.md
+      - Parallel Setup Pattern: PARALLEL_SETUP_PATTERN.md
+      - Subagent Instructions: subagent-instructions.md
+
+  - Implementation:
+      - Implementation Summary: IMPLEMENTATION_SUMMARY.md
+      - Skills Implementation: SKILLS_IMPLEMENTATION_SUMMARY.md
+      - Skills Enhancement: SKILLS_ENHANCEMENT.md
+      - Hook Output Report: HOOK_OUTPUT_REPORT.md
+      - Hook Output Analysis: hook-output-analysis.md
+
+# Watch additional files during development
+watch:
+  - lib/
+  - hooks/

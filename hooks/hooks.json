@@ -1,0 +1,142 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/session_start_git_context.py",
+            "timeout": 2000,
+            "description": "Git-powered context injection - differential updates since last session (~1-2K tokens)"
+          },
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/context_restorer.js",
+            "timeout": 2000,
+            "description": "Restore working context from scratch_pad.md (DRY context transfer)"
+          },
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/session_start.js",
+            "timeout": 1000,
+            "description": "Display Promptune commands (zero context overhead)"
+          },
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/version_checker.js",
+            "timeout": 3000,
+            "description": "Check for plugin updates (once per day)"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/context_injector.js",
+            "timeout": 1000,
+            "description": "Inject current context for grounded research"
+          },
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/user_prompt_submit.py",
+            "timeout": 5000,
+            "description": "SlashSense intent detection"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/pre_tool_use_state_sync.py",
+            "timeout": 1000,
+            "description": "State sync - check if files changed externally before Edit/Write (~300 tokens only when needed)"
+          },
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/pre_tool_use_git_advisor.py",
+            "timeout": 1000,
+            "description": "Git workflow advisor - suggests scripts for multi-tool workflows (93-97% token reduction)"
+          },
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/tool_router.py",
+            "timeout": 2000,
+            "description": "Intelligent tool routing for cost optimization"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/promptune_plan_tracker.py",
+            "timeout": 3000,
+            "description": "Auto-create HtmlGraph track from /ctx:plan"
+          },
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/promptune_execute_tracker.py",
+            "timeout": 3000,
+            "description": "Auto-create HtmlGraph features from /ctx:execute tasks"
+          },
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/tool_cost_tracker.py",
+            "timeout": 2000,
+            "description": "Track tool costs and optimization opportunities"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/context_preserver.py",
+            "timeout": 2000,
+            "description": "Automatically preserve working context to scratch_pad.md"
+          },
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/compact_start.js",
+            "timeout": 1000,
+            "description": "Track context compaction for measuring context preservation"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/session_end_recorder.py",
+            "timeout": 2000,
+            "description": "Record session metadata for next session's git context (~100 tokens write only)"
+          },
+          {
+            "type": "command",
+            "command": "uv run ${CLAUDE_PLUGIN_ROOT}/hooks/session_end_extractor.py",
+            "timeout": 5000,
+            "description": "Extract completed work to .plans/ and decisions.yaml (zero conversation overhead)"
+          }
+        ]
+      }
+    ]
+  }
+}
